@@ -8,7 +8,7 @@ body {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 200 70% 95%;
     --foreground: 240 10% 3.9%;
 
     --card: 0 0% 100%;
@@ -124,7 +124,7 @@ body {
  
 @layer base {
   * {
-    @apply border-border;
+    @apply border-neutral-200 dark:border-neutral-800;
   }
   body {
     @apply bg-background text-foreground;
