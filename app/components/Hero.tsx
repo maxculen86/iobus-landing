@@ -1,7 +1,10 @@
 import { Link } from "@remix-run/react";
 import { ArrowRight } from "lucide-react";
+import { useWhatsAppSecurity } from "../hooks/useWhatsAppSecurity";
 
 export function Hero() {
+  const { handleClick, isBlocked, remainingTime } = useWhatsAppSecurity();
+  
   return (
     <section className="relative w-full h-[80vh] flex flex-col items-center justify-center text-center overflow-hidden">
       {/* Fondo celeste claro */}
@@ -36,12 +39,17 @@ export function Hero() {
         >
           Explorar soluciones <ArrowRight className="ml-2 h-5 w-5" />
         </Link>
-        <Link
-          to="#contact"
-          className="inline-flex items-center justify-center rounded-md border border-blue-600 dark:border-blue-400 px-6 py-3 text-base font-medium text-blue-600 dark:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900 hover:text-blue-800 dark:hover:text-white transition"
+        <button
+          onClick={handleClick}
+          disabled={isBlocked}
+          className={`inline-flex items-center justify-center rounded-md border border-blue-600 dark:border-blue-400 px-6 py-3 text-base font-medium text-blue-600 dark:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900 hover:text-blue-800 dark:hover:text-white transition ${
+            isBlocked ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
         >
-          Solicitar una demo
-        </Link>
+          {isBlocked 
+            ? `Espera ${Math.ceil(remainingTime / 60)} minutos` 
+            : 'Solicitar una demo'}
+        </button>
       </div>
     </section>
   );
