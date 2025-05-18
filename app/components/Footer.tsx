@@ -85,7 +85,7 @@ export function Footer() {
       <div className="container border-t py-6">
         <p className="text-center text-sm text-gray-600 dark:text-gray-300 leading-normal">
           © {new Date().getFullYear()} 
-          <span className="align-middle inline-flex items-baseline relative top-0 mx-1">
+          <span className="align-middle inline-flex items-baseline relative mx-1">
             <IOBusLogo className="h-5" textSize="text-base" hideIsologo />
           </span>
           . Todos los derechos reservados.

@@ -21,7 +21,7 @@ export function IOBusLogo({ className = "h-16", textSize = "text-3xl", hideIsolo
           />
         </>
       )}
-      <span className={`${textSize} font-qurova lowercase`}>
+      <span className={`${textSize} font-qurova lowercase ${!hideIsologo ? 'mt-1' : 'mb-0.5'}`}>
         <span className="bg-gradient-to-t from-[#000000] to-[#0260FB] dark:from-white dark:to-[#0260FB] bg-clip-text text-transparent">i</span>
         <span className="bg-gradient-to-tr from-[#000000] to-[#0260FB] dark:from-white dark:to-[#0260FB] bg-clip-text text-transparent">o</span>
         <span className="text-gray-900 dark:text-white">bus</span>
