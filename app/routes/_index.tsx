@@ -2,9 +2,11 @@ import type { MetaFunction } from "@remix-run/node";
 import { Header } from "../components/Header";
 import { Hero } from "../components/Hero";
 import { Features } from "../components/Features";
+import { About } from "../components/About";
 import { Testimonials } from "../components/Testimonials";
 import { Pricing } from "../components/Pricing";
 import { Footer } from "../components/Footer";
+import { Contact } from "../components/Contact";
 
 export const meta: MetaFunction = () => {
   return [
@@ -31,8 +33,10 @@ export default function Index() {
       <main className="flex-1">
         <Hero />
         <Features />
+        <About />
         <Testimonials />
         <Pricing />
+        <Contact />
         <Footer />
       </main>
     </div>

@@ -1,0 +1,18 @@
+name = "iobus-landing"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+CONTACT_EMAIL = "contacto@iobus.com"
+# BREVO_API_KEY se debe definir como secreto, no aquí
+COMPANY_NAME = "IOBus"
+COMPANY_ADDRESS = "Av. Siempreviva 742, Springfield"
+COMPANY_PHONE = "+54 11 1234-5678"
+COMPANY_WHATSAPP = "+54 11 1234-5678"
+COMPANY_GITHUB = "https://github.com/iobus"
+COMPANY_INSTAGRAM = "https://instagram.com/iobus"
+COMPANY_LINKEDIN = "https://linkedin.com/company/iobus"
+COMPANY_TWITTER = "https://twitter.com/iobus"
+
+# Las variables secretas se configuran a través del dashboard de Cloudflare
+# BREVO_API_KEY = "tu_clave_api_de_brevo" 

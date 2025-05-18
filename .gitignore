@@ -3,6 +3,11 @@ node_modules
 /.cache
 /build
 .env
+.env.local
+.env.*.local
 .dev.vars
 
 .wrangler
+
+app/routes/.well-known.appspecific.com.chrome.devtools.json.tsx
+app/routes/well-known.$.tsx

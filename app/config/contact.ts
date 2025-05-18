@@ -5,13 +5,14 @@ const DAILY_RESET_HOUR = 0; // Reset a medianoche
 
 export const contactConfig = {
   whatsapp: {
-    number: '5491122553041', // Formato: código de país + código de área + número
+    number: '5491123888736', // Número de WhatsApp con código de país y sin espacios ni guiones
+    formattedNumber: '+54 9 11 2388-8736', // Número formateado para mostrar
     defaultMessage: 'Hola, me gustaría solicitar una demo de iobus',
     security: {
       maxRequestsPerHour: MAX_REQUESTS_PER_HOUR,
       cooldownPeriod: COOLDOWN_PERIOD,
       dailyResetHour: DAILY_RESET_HOUR,
-      allowedDomains: ['aiobus.com', 'www.aiobus.com', 'localhost'],
+      allowedDomains: ['aiobus.com', 'www.aiobus.com', 'localhost', 'localhost:5173'],
       minTimeBetweenClicks: 2000,
       validation: {
         requireReferrer: false,
@@ -19,5 +20,12 @@ export const contactConfig = {
         validateOrigin: true
       }
     }
-  }
+  },
+  email: {
+    contact: 'contacto@aiobus.com',
+  },
+  company: {
+    name: 'Iobus',
+    location: 'Buenos Aires, Argentina',
+  },
 } as const; 
