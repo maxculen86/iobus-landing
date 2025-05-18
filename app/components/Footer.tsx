@@ -17,17 +17,17 @@ export function Footer() {
             <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">Servicios</h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link to="/services#flotas" className="text-gray-600 dark:text-gray-300 transition-colors hover:text-primary">
+                <Link to="#pricing" className="text-gray-600 dark:text-gray-300 transition-colors hover:text-primary">
                   Gestión de Flotas
                 </Link>
               </li>
               <li>
-                <Link to="/services#analisis" className="text-gray-600 dark:text-gray-300 transition-colors hover:text-primary">
+                <Link to="#pricing" className="text-gray-600 dark:text-gray-300 transition-colors hover:text-primary">
                   Análisis de Datos
                 </Link>
               </li>
               <li>
-                <Link to="/services#rutas" className="text-gray-600 dark:text-gray-300 transition-colors hover:text-primary">
+                <Link to="#pricing" className="text-gray-600 dark:text-gray-300 transition-colors hover:text-primary">
                   Optimización de Rutas
                 </Link>
               </li>
@@ -37,12 +37,12 @@ export function Footer() {
             <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">Empresa</h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link to="/about" className="text-gray-600 dark:text-gray-300 transition-colors hover:text-primary">
+                <Link to="#about" className="text-gray-600 dark:text-gray-300 transition-colors hover:text-primary">
                   Nosotros
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-600 dark:text-gray-300 transition-colors hover:text-primary">
+                <Link to="#contact" className="text-gray-600 dark:text-gray-300 transition-colors hover:text-primary">
                   Contacto
                 </Link>
               </li>

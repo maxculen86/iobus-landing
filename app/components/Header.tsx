@@ -11,11 +11,11 @@ export function Header() {
     }
   };
 
-  const scrollToFeatures = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const scrollToPricing = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const featuresSection = document.querySelector('.features-bg')?.closest('section');
-    if (featuresSection) {
-      featuresSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const pricingSection = document.getElementById('pricing');
+    if (pricingSection) {
+      pricingSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
 
@@ -35,7 +35,7 @@ export function Header() {
             <IOBusLogo />
           </Link>
           <div className="flex items-center gap-6">
-            <Link to="#solutions" onClick={scrollToFeatures} className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">
+            <Link to="#pricing" onClick={scrollToPricing} className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">
               Soluciones
             </Link>
             <Link to="/about" onClick={scrollToAbout} className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">
