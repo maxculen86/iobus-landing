@@ -1,6 +1,7 @@
 import { Link } from "@remix-run/react";
 import { ThemeToggle } from "./ThemeToggle";
 import { IOBusLogo } from "./IOBusLogo";
+import { MobileMenu } from "./MobileMenu";
 
 export function Header() {
   const scrollToAbout = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -34,11 +35,11 @@ export function Header() {
           <Link to="/" className="flex items-center">
             <IOBusLogo />
           </Link>
-          <div className="flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-6">
             <Link to="#pricing" onClick={scrollToPricing} className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">
               Soluciones
             </Link>
-            <Link to="/about" onClick={scrollToAbout} className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">
+            <Link to="#about" onClick={scrollToAbout} className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">
               Nosotros
             </Link>
             <Link to="#contact" onClick={scrollToContact} className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">
@@ -46,6 +47,11 @@ export function Header() {
             </Link>
             <ThemeToggle />
           </div>
+          <MobileMenu 
+            scrollToAbout={scrollToAbout}
+            scrollToPricing={scrollToPricing}
+            scrollToContact={scrollToContact}
+          />
         </nav>
       </div>
     </header>
