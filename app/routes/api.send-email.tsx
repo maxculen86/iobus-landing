@@ -3,7 +3,7 @@ import type { ActionFunctionArgs } from "@remix-run/cloudflare";
 
 // Brevo API configuration
 const BREVO_API_URL = "https://api.brevo.com/v3/smtp/email";
-const TO_EMAIL = process.env.CONTACT_EMAIL || "contacto@iobus.com";
+const TO_EMAIL = process.env.CONTACT_EMAIL || "contacto@aiobus.com";
 const FROM_EMAIL = "no-reply@aiobus.com";
 const SUBJECT = "Nuevo mensaje de contacto desde la web";
 
