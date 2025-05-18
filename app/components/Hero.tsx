@@ -5,11 +5,11 @@ import { useWhatsAppSecurity } from "../hooks/useWhatsAppSecurity";
 export function Hero() {
   const { handleClick, isBlocked, remainingTime } = useWhatsAppSecurity();
   
-  const scrollToFeatures = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const scrollToPricing = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const featuresSection = document.querySelector('.features-bg')?.closest('section');
-    if (featuresSection) {
-      featuresSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const pricingSection = document.querySelector('#pricing');
+    if (pricingSection) {
+      pricingSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
 
@@ -32,8 +32,8 @@ export function Hero() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            to="#solutions"
-            onClick={scrollToFeatures}
+            to="#pricing"
+            onClick={scrollToPricing}
             className="inline-flex items-center justify-center rounded-md bg-blue-600 dark:bg-blue-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-700 dark:hover:bg-blue-600 transition"
           >
             Explorar soluciones <ArrowRight className="ml-2 h-5 w-5" />

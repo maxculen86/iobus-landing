@@ -1,7 +1,15 @@
 import { Check } from "lucide-react";
 import { Button } from "./ui/button";
+import { useWhatsAppSecurity } from "../hooks/useWhatsAppSecurity";
 
 export function Pricing() {
+  const { handleClick, isBlocked, remainingTime } = useWhatsAppSecurity();
+
+  const handlePlanClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    handleClick(e);
+  };
+
   return (
     <section id="pricing" className="relative w-full py-24 flex flex-col items-center justify-center text-center overflow-hidden">
       {/* Fondo de textura */}
@@ -36,8 +44,16 @@ export function Pricing() {
                 Soporte por email
               </li>
             </ul>
-            <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-              Solicitar Información
+            <Button 
+              onClick={handlePlanClick}
+              disabled={isBlocked}
+              className={`w-full bg-blue-600 hover:bg-blue-700 text-white ${
+                isBlocked ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
+            >
+              {isBlocked 
+                ? `Espera ${Math.ceil(remainingTime / 60)} minutos` 
+                : 'Solicitar Información'}
             </Button>
           </div>
 
@@ -65,8 +81,16 @@ export function Pricing() {
                 Soporte prioritario 24/7
               </li>
             </ul>
-            <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-              Solicitar Información
+            <Button 
+              onClick={handlePlanClick}
+              disabled={isBlocked}
+              className={`w-full bg-blue-600 hover:bg-blue-700 text-white ${
+                isBlocked ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
+            >
+              {isBlocked 
+                ? `Espera ${Math.ceil(remainingTime / 60)} minutos` 
+                : 'Solicitar Información'}
             </Button>
           </div>
 
@@ -91,8 +115,16 @@ export function Pricing() {
                 Gerente de cuenta dedicado
               </li>
             </ul>
-            <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-              Solicitar Información
+            <Button 
+              onClick={handlePlanClick}
+              disabled={isBlocked}
+              className={`w-full bg-blue-600 hover:bg-blue-700 text-white ${
+                isBlocked ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
+            >
+              {isBlocked 
+                ? `Espera ${Math.ceil(remainingTime / 60)} minutos` 
+                : 'Solicitar Información'}
             </Button>
           </div>
         </div>
@@ -101,8 +133,16 @@ export function Pricing() {
           <p className="text-gray-600 dark:text-gray-300 mb-4">
             ¿Necesitas un plan personalizado?
           </p>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-            Contactar Ventas
+          <Button 
+            onClick={handlePlanClick}
+            disabled={isBlocked}
+            className={`bg-blue-600 hover:bg-blue-700 text-white ${
+              isBlocked ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+          >
+            {isBlocked 
+              ? `Espera ${Math.ceil(remainingTime / 60)} minutos` 
+              : 'Contactar Ventas'}
           </Button>
         </div>
       </div>

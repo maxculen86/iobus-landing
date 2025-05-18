@@ -86,7 +86,7 @@ export function About() {
 
         <div className="mt-16">
           <a 
-            href="/contact" 
+            href="#contact" 
             className="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
             Contáctanos
