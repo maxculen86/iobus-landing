@@ -51,33 +51,18 @@ export function Footer() {
           <div className="space-y-4">
             <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">Conecta</h3>
             <div className="flex space-x-4">
-              <a
-                href="https://github.com/iobus"
-                className="text-gray-600 dark:text-gray-300 transition-colors hover:text-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <div className="text-gray-600 dark:text-gray-300">
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
-              </a>
-              <a
-                href="https://twitter.com/iobus"
-                className="text-gray-600 dark:text-gray-300 transition-colors hover:text-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
+              </div>
+              <div className="text-gray-600 dark:text-gray-300">
                 <Twitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
-              </a>
-              <a
-                href="https://linkedin.com/company/iobus"
-                className="text-gray-600 dark:text-gray-300 transition-colors hover:text-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
+              </div>
+              <div className="text-gray-600 dark:text-gray-300">
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
-              </a>
+              </div>
             </div>
           </div>
         </div>
