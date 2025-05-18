@@ -1,5 +1,5 @@
-import { json } from "@remix-run/node";
-import type { ActionFunctionArgs } from "@remix-run/node";
+import { json } from "@remix-run/cloudflare";
+import type { ActionFunctionArgs } from "@remix-run/cloudflare";
 
 // Brevo API configuration
 const BREVO_API_URL = "https://api.brevo.com/v3/smtp/email";
