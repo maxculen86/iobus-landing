@@ -5,8 +5,8 @@ const DAILY_RESET_HOUR = 0; // Reset a medianoche
 
 export const contactConfig = {
   whatsapp: {
-    number: '5491122553041', // Número de WhatsApp con código de país y sin espacios ni guiones
-    formattedNumber: '+54 9 11 2255-3041', // Número formateado para mostrar
+    number: '5491123973341', // Número de WhatsApp con código de país y sin espacios ni guiones
+    formattedNumber: '+54 9 11 2397-3341', // Número formateado para mostrar
     defaultMessage: 'Hola, me gustaría solicitar una demo de iobus',
     security: {
       maxRequestsPerHour: MAX_REQUESTS_PER_HOUR,
