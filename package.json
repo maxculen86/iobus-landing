@@ -19,6 +19,8 @@
 		"@remix-run/cloudflare": "^2.16.5",
 		"@remix-run/cloudflare-pages": "^2.16.5",
 		"@remix-run/react": "^2.16.5",
+		"@supabase/ssr": "^0.6.1",
+		"@supabase/supabase-js": "^2.54.0",
 		"@types/nodemailer": "^6.4.17",
 		"class-variance-authority": "^0.7.1",
 		"formik": "^2.4.6",
