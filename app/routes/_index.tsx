@@ -1,10 +1,13 @@
-import type { MetaFunction } from "@remix-run/cloudflare";
+import type { MetaFunction, LoaderFunctionArgs } from "@remix-run/cloudflare";
+import { redirect } from "@remix-run/cloudflare";
+import { useLoaderData } from "@remix-run/react";
+import { createSupabaseServerClient } from "~/lib/supabase.server";
 import { Header } from "../components/Header";
 import { Hero } from "../components/Hero";
 import { Features } from "../components/Features";
 import { About } from "../components/About";
 import { Testimonials } from "../components/Testimonials";
-import { Pricing } from "../components/Pricing";
+import { Solutions } from "../components/Solutions";
 import { Footer } from "../components/Footer";
 import { Contact } from "../components/Contact";
 
@@ -26,6 +29,30 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+export async function loader({ request, context }: LoaderFunctionArgs) {
+  const url = new URL(request.url);
+  const token_hash = url.searchParams.get('token_hash');
+  const type = url.searchParams.get('type');
+
+  if (token_hash && type === 'signup') {
+    const supabase = createSupabaseServerClient(request, context.cloudflare.env);
+    
+    const { error } = await supabase.auth.verifyOtp({
+      token_hash,
+      type: 'signup'
+    });
+    
+    if (error) {
+      console.error('Error confirming signup:', error);
+      return redirect('/login?error=confirmation_failed');
+    }
+
+    return redirect('/?confirmed=true');
+  }
+
+  return null;
+}
+
 export default function Index() {
   return (
     <div className="flex min-h-screen flex-col">
@@ -35,7 +62,7 @@ export default function Index() {
         <Features />
         <About />
         <Testimonials />
-        <Pricing />
+        <Solutions />
         <Contact />
         <Footer />
       </main>
