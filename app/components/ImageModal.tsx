@@ -45,6 +45,13 @@ export function ImageModal({ isOpen, onClose, src, alt }: ImageModalProps) {
             src={src}
             alt={alt}
             className="relative w-full h-auto object-contain select-none"
+            onError={(e) => {
+              const img = e.currentTarget as HTMLImageElement
+              if (!img.dataset.fallback) {
+                img.dataset.fallback = "true"
+                img.src = "/images/Recurso 1.png"
+              }
+            }}
             loading="lazy"
           />
         </div>
