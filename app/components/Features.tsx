@@ -1,6 +1,6 @@
 import { Bus, LineChart, Map, Users } from "lucide-react";
-// import { useState } from "react";
-// import { VideoModal } from "./VideoModal";
+import { useState } from "react";
+import { ImageModal } from "./ImageModal";
 
 const features = [
   {
@@ -30,7 +30,7 @@ const features = [
 ];
 
 export function Features() {
-  // const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const [isImageOpen, setIsImageOpen] = useState(false);
 
   return (
     <section className="relative w-full py-24 flex flex-col items-center justify-center text-center bg-gray-50 dark:bg-gray-900">
@@ -47,10 +47,10 @@ export function Features() {
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl w-full">
         {features.map((feature) => (
-          <div
+          <button
             key={feature.name}
-            className="flex flex-col items-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-left"
-            // onClick={() => setSelectedVideo(feature.videoId)}
+            className="flex flex-col items-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-left cursor-pointer"
+            onClick={() => feature.name === "Análisis de Datos" ? setIsImageOpen(true) : undefined}
           >
             <feature.icon className="h-10 w-10 text-blue-600 dark:text-blue-400 mb-4" />
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
@@ -59,17 +59,15 @@ export function Features() {
             <p className="text-gray-600 dark:text-gray-300">
               {feature.description}
             </p>
-          </div>
+          </button>
         ))}
       </div>
-
-      {/* Video Modal - Comentado para implementación futura
-      <VideoModal
-        isOpen={selectedVideo !== null}
-        onClose={() => setSelectedVideo(null)}
-        videoId={selectedVideo || ""}
+      <ImageModal
+        isOpen={isImageOpen}
+        onClose={() => setIsImageOpen(false)}
+        src="/images/dashboard-analytics.webp"
+        alt="Dashboard de analítica operativa"
       />
-      */}
     </section>
   );
 } 
