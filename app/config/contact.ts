@@ -12,7 +12,7 @@ export const contactConfig = {
       maxRequestsPerHour: MAX_REQUESTS_PER_HOUR,
       cooldownPeriod: COOLDOWN_PERIOD,
       dailyResetHour: DAILY_RESET_HOUR,
-      allowedDomains: ['aiobus.com', 'www.aiobus.com', 'localhost', 'localhost:5173'],
+      allowedDomains: ['aiobus.com', 'www.aiobus.com', 'aiobus.pages.dev', 'localhost', 'localhost:5173'],
       minTimeBetweenClicks: 2000,
       validation: {
         requireReferrer: false,

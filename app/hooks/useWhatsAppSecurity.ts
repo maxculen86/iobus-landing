@@ -16,23 +16,33 @@ type SecurityAction =
   | { type: 'UNBLOCK' }
   | { type: 'UPDATE_STATE'; payload: Partial<SecurityState> };
 
-function isValidOrigin(referrer: string | null): boolean {
+function isValidOrigin(): boolean {
   const { validation, allowedDomains } = contactConfig.whatsapp.security;
-  
-  if (!validation.requireReferrer && validation.allowDirectAccess && !referrer) {
-    return true;
+
+  if (!validation.validateOrigin) return true;
+
+  if (typeof window === 'undefined') return true;
+
+  const currentHost = window.location.hostname + (window.location.port ? `:${window.location.port}` : '');
+  const isCurrentHostAllowed = allowedDomains.some(domain => 
+    currentHost === domain || currentHost.endsWith(`.${domain}`)
+  );
+  if (!isCurrentHostAllowed) return false;
+
+  if (validation.requireReferrer && !validation.allowDirectAccess) {
+    const ref = document.referrer;
+    if (!ref) return false;
+    try {
+      const url = new URL(ref);
+      return allowedDomains.some(domain => 
+        url.hostname === domain || url.hostname.endsWith(`.${domain}`)
+      );
+    } catch {
+      return false;
+    }
   }
 
-  if (!referrer) return false;
-
-  try {
-    const url = new URL(referrer);
-    return allowedDomains.some(domain => 
-      url.hostname === domain || url.hostname.endsWith(`.${domain}`)
-    );
-  } catch {
-    return false;
-  }
+  return true;
 }
 
 function shouldResetDaily(state: SecurityState): boolean {
@@ -143,7 +153,7 @@ export function useWhatsAppSecurity() {
     }
 
     // Validate origin
-    if (!isValidOrigin(document.referrer)) {
+    if (!isValidOrigin()) {
       return;
     }
 
