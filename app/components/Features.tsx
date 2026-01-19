@@ -5,7 +5,7 @@ import { ImageModal } from "./ImageModal";
 const features = [
   {
     name: "Gestión de Flotas",
-    description: "Monitoreo en tiempo real, optimización de rutas y mantenimiento predictivo para tu flota.",
+    description: "Análisis inteligente de la eficiencia de tus unidades con iobus, detectando oportunidades de mejora para optimizar el desempeño de tu flota.",
     icon: Bus,
     // videoId: "k3asfeJf402FRtD0iQ2" // ID del video de gestión de flotas
   },
