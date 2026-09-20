@@ -12,6 +12,16 @@ export default {
       },
     },
     extend: {
+      backgroundImage: {
+        "io-tex1": "var(--io-tex1)",
+        "io-tex2": "var(--io-tex2)",
+      },
+      boxShadow: {
+        "io-card":
+          "0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1)",
+        "io-card-soft":
+          "0 10px 15px -3px rgba(0,0,0,.08), 0 4px 6px -4px rgba(0,0,0,.1)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -45,6 +55,27 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        // Landing design tokens (defined in app/styles/globals.css, light + dark).
+        io: {
+          bg: "var(--io-bg)",
+          surface: "var(--io-surface)",
+          surface2: "var(--io-surface2)",
+          border: "var(--io-border)",
+          ink: "var(--io-ink)",
+          ink2: "var(--io-ink2)",
+          ink3: "var(--io-ink3)",
+          "input-border": "var(--io-input-border)",
+          blue: "var(--io-blue)",
+          "blue-h": "var(--io-blue-h)",
+          accent: "var(--io-accent)",
+          "accent-soft": "var(--io-accent-soft)",
+          "blue-soft": "var(--io-blue-soft)",
+          "blue-soft-border": "var(--io-blue-soft-border)",
+          "ink-on-soft": "var(--io-ink-on-soft)",
+          green: "var(--io-green)",
+          header: "var(--io-header-bg)",
+          "logo-from": "var(--io-logo-from)",
         },
         iobusnavy: "#000e2f",
         iobusblue: "#0260fb",

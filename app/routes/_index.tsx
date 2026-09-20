@@ -1,6 +1,5 @@
 import type { MetaFunction, LoaderFunctionArgs } from "@remix-run/cloudflare";
 import { redirect } from "@remix-run/cloudflare";
-import { useLoaderData } from "@remix-run/react";
 import { createSupabaseServerClient } from "~/lib/supabase.server";
 import { Header } from "../components/Header";
 import { Hero } from "../components/Hero";
@@ -64,8 +63,8 @@ export default function Index() {
         <Testimonials />
         <Solutions />
         <Contact />
-        <Footer />
       </main>
+      <Footer />
     </div>
   );
 }
