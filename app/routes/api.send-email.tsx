@@ -47,8 +47,8 @@ function checkRateLimit(key: string, map: Map<string, { count: number; last: num
   return true;
 }
 
-// The optional company comes straight from the form, so it is escaped before
-// being embedded in the email HTML.
+// Every form field comes straight from the visitor, so each one is escaped
+// before being embedded in the email HTML.
 function escapeHtml(value: string) {
   return value
     .replace(/&/g, "&amp;")
@@ -113,10 +113,10 @@ export async function action({ request }: ActionFunctionArgs) {
       subject: SUBJECT,
       htmlContent: `
         <h2>Nuevo mensaje de contacto</h2>
-        <p><strong>Nombre:</strong> ${name}</p>
+        <p><strong>Nombre:</strong> ${escapeHtml(name)}</p>
         ${company ? `<p><strong>Empresa:</strong> ${escapeHtml(company)}</p>` : ""}
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Mensaje:</strong><br/>${message.replace(/\n/g, "<br/>")}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Mensaje:</strong><br/>${escapeHtml(message).replace(/\n/g, "<br/>")}</p>
       `,
     };
 

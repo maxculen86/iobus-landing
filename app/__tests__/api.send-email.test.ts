@@ -82,6 +82,32 @@ describe("api.send-email action", () => {
     expect(sentHtml()).toContain("&lt;script&gt;");
   });
 
+  it("escapes HTML in the name, email and message fields", async () => {
+    await run({
+      name: "<img src=x onerror=alert(1)>",
+      email: '"<b>x</b>"@example.com',
+      message: "<script>alert(2)</script>\nsegunda línea",
+    });
+
+    const html = sentHtml();
+    expect(html).not.toContain("<img");
+    expect(html).not.toContain("<script>");
+    expect(html).not.toContain("<b>");
+    expect(html).toContain("&lt;img src=x onerror=alert(1)&gt;");
+    expect(html).toContain("&lt;script&gt;alert(2)&lt;/script&gt;");
+    expect(html).toContain("&lt;b&gt;x&lt;/b&gt;");
+  });
+
+  it("keeps line breaks in the message as <br/> after escaping", async () => {
+    await run({
+      name: "Ana",
+      email: "ana4@example.com",
+      message: "primera\nsegunda",
+    });
+
+    expect(sentHtml()).toContain("primera<br/>segunda");
+  });
+
   it("rejects requests missing required fields", async () => {
     const response = await run({ name: "Ana", company: "Acme" });
 
