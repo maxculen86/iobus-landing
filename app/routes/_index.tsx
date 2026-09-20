@@ -1,15 +1,7 @@
 import type { MetaFunction, LoaderFunctionArgs } from "@remix-run/cloudflare";
 import { redirect } from "@remix-run/cloudflare";
-import { useLoaderData } from "@remix-run/react";
 import { createSupabaseServerClient } from "~/lib/supabase.server";
-import { Header } from "../components/Header";
-import { Hero } from "../components/Hero";
-import { Features } from "../components/Features";
-import { About } from "../components/About";
-import { Testimonials } from "../components/Testimonials";
-import { Solutions } from "../components/Solutions";
-import { Footer } from "../components/Footer";
-import { Contact } from "../components/Contact";
+import { LandingPage } from "../components/LandingPage";
 
 export const meta: MetaFunction = () => {
   return [
@@ -54,18 +46,5 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 }
 
 export default function Index() {
-  return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-      <main className="flex-1">
-        <Hero />
-        <Features />
-        <About />
-        <Testimonials />
-        <Solutions />
-        <Contact />
-        <Footer />
-      </main>
-    </div>
-  );
+  return <LandingPage />;
 }

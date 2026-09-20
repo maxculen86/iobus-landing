@@ -169,46 +169,68 @@ body {
   * {
     @apply border-neutral-200 dark:border-neutral-800;
   }
-  body {
-    @apply bg-background text-foreground;
+}
+
+/* Landing design tokens. Light values live on :root, dark values under .dark
+   (toggled on <html> by app/lib/theme.ts). Tailwind exposes them as `io-*`
+   colors and `bg-io-tex*` images (see tailwind.config.ts). */
+:root {
+  --io-bg: #efefef;
+  --io-surface: #ffffff;
+  --io-surface2: #f9fafb;
+  --io-border: #e5e7eb;
+  --io-ink: #111827;
+  --io-ink2: #4b5563;
+  --io-ink3: #6b7280;
+  --io-input-border: #d1d5db;
+  --io-blue: #2563eb;
+  --io-blue-h: #1d4ed8;
+  --io-accent: #0260fb;
+  --io-accent-soft: rgba(2, 96, 251, 0.1);
+  --io-blue-soft: #eff6ff;
+  --io-blue-soft-border: #bfdbfe;
+  --io-ink-on-soft: #1e3a8a;
+  --io-green: #15803d;
+  --io-header-bg: rgba(239, 239, 239, 0.85);
+  --io-logo-from: #000000;
+  --io-tex1: url('/backgrounds/textura_.png');
+  --io-tex2: url('/backgrounds/textura_2.png');
+}
+
+.dark {
+  --io-bg: #000e2f;
+  --io-surface: #1f2937;
+  --io-surface2: #111827;
+  --io-border: #374151;
+  --io-ink: #ffffff;
+  --io-ink2: #d1d5db;
+  --io-ink3: #9ca3af;
+  --io-input-border: #4b5563;
+  --io-blue: #3b82f6;
+  --io-blue-h: #2563eb;
+  --io-accent: #60a5fa;
+  --io-accent-soft: rgba(96, 165, 250, 0.16);
+  --io-blue-soft: #1e3a8a;
+  --io-blue-soft-border: #2563eb;
+  --io-ink-on-soft: #dbeafe;
+  --io-green: #4ade80;
+  --io-header-bg: rgba(0, 14, 47, 0.85);
+  --io-logo-from: #ffffff;
+  --io-tex1: url('/backgrounds/textura__dark.png');
+  --io-tex2: url('/backgrounds/textura_2_dark.png');
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-/* Hero background con textura2 */
-.hero-bg {
-  background-image: url('/backgrounds/textura_.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 0;
-}
-
-.dark .hero-bg {
-  background-image: url('/backgrounds/textura__dark.png');
-}
-
-/* Features background con textura */
-.features-bg {
-  background-image: url('/backgrounds/textura_2.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.dark .features-bg {
-  background-image: url('/backgrounds/textura_2_dark.png');
-}
-
-/* Testimonials background */
-.testimonials-bg {
-  background-image: url('/backgrounds/textura_.png');
-  background-size: cover;
-  background-position: center, right bottom;
-  background-repeat: no-repeat, no-repeat;
-}
-
-.dark .testimonials-bg {
-  background-image: url('/backgrounds/textura__dark.png');
+body {
+  background-color: var(--io-bg);
+  color: var(--io-ink);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease;
 }
 
 .font-qurova {

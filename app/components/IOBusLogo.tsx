@@ -1,31 +1,55 @@
-interface IOBusLogoProps {
-  className?: string;
-  textSize?: string;
-  hideIsologo?: boolean;
+interface IsologoProps {
+  /** Tailwind height class, e.g. `h-[34px]`. */
+  heightClass: string;
+  alt?: string;
 }
 
-export function IOBusLogo({ className = "h-16", textSize = "text-3xl", hideIsologo = false }: IOBusLogoProps) {
+/** The isologo mark; the dark variant is tinted to the light ink color. */
+export function Isologo({ heightClass, alt = "" }: IsologoProps) {
   return (
-    <span className={`flex items-center ${className}`}>
-      {!hideIsologo && (
-        <>
-          <img 
-            src="/logos/ISOLOGO-18.svg" 
-            alt="IOBus Logo" 
-            className="dark:hidden h-full"
-          />
-          <img 
-            src="/logos/ISOLOGO-20.svg" 
-            alt="IOBus Logo" 
-            className="hidden dark:block h-full"
-          />
-        </>
-      )}
-      <span className={`${textSize} font-qurova lowercase ${!hideIsologo ? 'mt-1' : 'mb-0.5'}`}>
-        <span className="bg-gradient-to-t from-[#000000] to-[#0260FB] dark:from-white dark:to-[#0260FB] bg-clip-text text-transparent">i</span>
-        <span className="bg-gradient-to-tr from-[#000000] to-[#0260FB] dark:from-white dark:to-[#0260FB] bg-clip-text text-transparent">o</span>
-        <span className="text-gray-900 dark:text-white">bus</span>
+    <>
+      <img
+        src="/logos/ISOLOGO-18.svg"
+        alt={alt}
+        className={`${heightClass} w-auto dark:hidden`}
+      />
+      <img
+        src="/logos/ISOLOGO-20.svg"
+        alt={alt}
+        className={`${heightClass} hidden w-auto [filter:brightness(0)_invert(0.937)] dark:block`}
+      />
+    </>
+  );
+}
+
+interface IOBusLogoProps {
+  /** `header` is the 34px mark with a 26px wordmark; `footer` is 30px / 24px. */
+  size?: "header" | "footer";
+}
+
+const SIZES = {
+  header: { icon: "h-[34px]", text: "text-[26px]" },
+  footer: { icon: "h-[30px]", text: "text-[24px]" },
+} as const;
+
+export function IOBusLogo({ size = "header" }: IOBusLogoProps) {
+  const { icon, text } = SIZES[size];
+
+  return (
+    <span className="inline-flex items-center gap-0.5">
+      <Isologo heightClass={icon} alt="iobus" />
+      <span
+        className={`${text} mt-1 font-qurova lowercase leading-none`}
+        aria-hidden="true"
+      >
+        <span className="bg-gradient-to-t from-io-logo-from to-io-accent bg-clip-text text-transparent">
+          i
+        </span>
+        <span className="bg-gradient-to-tr from-io-logo-from to-io-accent bg-clip-text text-transparent">
+          o
+        </span>
+        <span className="text-io-ink">bus</span>
       </span>
     </span>
   );
-} 
+}

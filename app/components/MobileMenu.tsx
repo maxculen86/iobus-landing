@@ -1,69 +1,51 @@
 import { useState } from "react";
-import { Link } from "@remix-run/react";
 import { Menu, X } from "lucide-react";
-import { ThemeToggle } from "./ThemeToggle";
+import type { NavLink } from "~/config/navigation";
 
 interface MobileMenuProps {
-  scrollToAbout: (e: React.MouseEvent<HTMLAnchorElement>) => void;
-  scrollToPricing: (e: React.MouseEvent<HTMLAnchorElement>) => void;
-  scrollToContact: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  links: NavLink[];
+  contactLink: NavLink;
 }
 
-export function MobileMenu({ scrollToAbout, scrollToPricing, scrollToContact }: MobileMenuProps) {
+export function MobileMenu({ links, contactLink }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, scrollFn: (e: React.MouseEvent<HTMLAnchorElement>) => void) => {
-    scrollFn(e);
-    setIsOpen(false);
-  };
+  const close = () => setIsOpen(false);
 
   return (
-    <div className="md:hidden">
+    <div className="xl:hidden">
       <button
-        onClick={toggleMenu}
-        className="p-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-        aria-label="Toggle menu"
+        type="button"
+        onClick={() => setIsOpen((open) => !open)}
+        className="inline-flex h-[34px] w-[34px] items-center justify-center rounded-md border border-io-border bg-io-surface text-io-ink2 transition-colors hover:text-io-ink"
+        aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+        aria-expanded={isOpen}
       >
-        {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        {isOpen ? <X className="h-[18px] w-[18px]" /> : <Menu className="h-[18px] w-[18px]" />}
       </button>
 
       {isOpen && (
-        <div className="fixed inset-x-0 top-16 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b">
-          <nav className="container mx-auto px-4 py-4">
-            <ul className="space-y-4">
-              <li>
-                <Link
-                  to="#pricing"
-                  onClick={(e) => handleLinkClick(e, scrollToPricing)}
-                  className="block text-base text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+        <div className="absolute inset-x-0 top-full border-b border-io-border bg-io-surface shadow-lg">
+          <nav aria-label="Menú móvil" className="mx-auto max-w-[1400px] px-6 py-4">
+            <ul className="flex flex-col gap-4">
+              {links.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={close}
+                    className="block text-base text-io-ink2 hover:opacity-80"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+              <li className="pt-2">
+                <a
+                  href={contactLink.href}
+                  onClick={close}
+                  className="inline-flex items-center rounded-md bg-io-blue px-4 py-2 text-[13px] font-medium text-white hover:bg-io-blue-h hover:text-white hover:opacity-80"
                 >
-                  Soluciones
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="#about"
-                  onClick={(e) => handleLinkClick(e, scrollToAbout)}
-                  className="block text-base text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-                >
-                  Nosotros
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="#contact"
-                  onClick={(e) => handleLinkClick(e, scrollToContact)}
-                  className="block text-base text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-                >
-                  Contacto
-                </Link>
-              </li>
-              <li className="pt-2 border-t">
-                <ThemeToggle />
+                  {contactLink.label}
+                </a>
               </li>
             </ul>
           </nav>
@@ -71,4 +53,4 @@ export function MobileMenu({ scrollToAbout, scrollToPricing, scrollToContact }: 
       )}
     </div>
   );
-} 
+}

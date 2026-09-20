@@ -1,59 +1,39 @@
-import { Link } from "@remix-run/react";
-import { ThemeToggle } from "./ThemeToggle";
+import { contactLink, headerLinks, homeLink } from "~/config/navigation";
 import { IOBusLogo } from "./IOBusLogo";
 import { MobileMenu } from "./MobileMenu";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
-  const scrollToAbout = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
-
-  const scrollToPricing = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const pricingSection = document.getElementById('pricing');
-    if (pricingSection) {
-      pricingSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
-
-  const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
-
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4">
-        <nav className="flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center">
+    <header className="sticky top-0 z-50 border-b border-io-border bg-io-header backdrop-blur">
+      <div className="mx-auto max-w-[1400px] px-6">
+        <div className="flex h-16 items-center justify-between gap-6">
+          <a href={homeLink.href} className="flex flex-none items-center hover:opacity-80">
             <IOBusLogo />
-          </Link>
-          <div className="hidden md:flex items-center gap-6">
-            <Link to="#pricing" onClick={scrollToPricing} className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">
-              Soluciones
-            </Link>
-            <Link to="#about" onClick={scrollToAbout} className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">
-              Nosotros
-            </Link>
-            <Link to="#contact" onClick={scrollToContact} className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">
-              Contacto
-            </Link>
+          </a>
+          <div className="flex items-center justify-end gap-5">
+            <nav aria-label="Principal" className="hidden items-center gap-5 xl:flex">
+              {headerLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-[13px] text-io-ink2 hover:opacity-80"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
             <ThemeToggle />
+            <a
+              href={contactLink.href}
+              className="hidden items-center rounded-md bg-io-blue px-4 py-2 text-[13px] font-medium text-white hover:bg-io-blue-h hover:text-white hover:opacity-80 xl:inline-flex"
+            >
+              {contactLink.label}
+            </a>
+            <MobileMenu links={headerLinks} contactLink={contactLink} />
           </div>
-          <MobileMenu 
-            scrollToAbout={scrollToAbout}
-            scrollToPricing={scrollToPricing}
-            scrollToContact={scrollToContact}
-          />
-        </nav>
+        </div>
       </div>
     </header>
   );
-} 
+}

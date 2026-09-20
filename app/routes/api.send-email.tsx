@@ -47,6 +47,17 @@ function checkRateLimit(key: string, map: Map<string, { count: number; last: num
   return true;
 }
 
+// Every form field comes straight from the visitor, so each one is escaped
+// before being embedded in the email HTML.
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export async function action({ request }: ActionFunctionArgs) {
   const corsHeaders = getCorsHeaders(request);
   
@@ -59,8 +70,15 @@ export async function action({ request }: ActionFunctionArgs) {
   }
 
   try {
-    const data = await request.json() as { name?: string; email?: string; message?: string };
+    const data = await request.json() as {
+      name?: string;
+      company?: string;
+      email?: string;
+      message?: string;
+    };
     const { name, email, message } = data;
+    const company =
+      typeof data.company === "string" ? data.company.trim().slice(0, 100) : "";
 
     if (!name || !email || !message) {
       return json(
@@ -95,9 +113,10 @@ export async function action({ request }: ActionFunctionArgs) {
       subject: SUBJECT,
       htmlContent: `
         <h2>Nuevo mensaje de contacto</h2>
-        <p><strong>Nombre:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Mensaje:</strong><br/>${message.replace(/\n/g, "<br/>")}</p>
+        <p><strong>Nombre:</strong> ${escapeHtml(name)}</p>
+        ${company ? `<p><strong>Empresa:</strong> ${escapeHtml(company)}</p>` : ""}
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Mensaje:</strong><br/>${escapeHtml(message).replace(/\n/g, "<br/>")}</p>
       `,
     };
 
