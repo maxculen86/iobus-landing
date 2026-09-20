@@ -24,7 +24,7 @@ export function MobileMenu({ links, contactLink }: MobileMenuProps) {
       </button>
 
       {isOpen && (
-        <div className="absolute inset-x-0 top-full border-b border-io-border bg-io-header backdrop-blur">
+        <div className="absolute inset-x-0 top-full border-b border-io-border bg-io-surface shadow-lg">
           <nav aria-label="Menú móvil" className="mx-auto max-w-[1400px] px-6 py-4">
             <ul className="flex flex-col gap-4">
               {links.map((link) => (
