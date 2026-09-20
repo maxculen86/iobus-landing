@@ -1,18 +1,7 @@
 import type { MetaFunction, LoaderFunctionArgs } from "@remix-run/cloudflare";
 import { redirect } from "@remix-run/cloudflare";
 import { createSupabaseServerClient } from "~/lib/supabase.server";
-import { Header } from "../components/Header";
-import { Hero } from "../components/Hero";
-import { Challenges } from "../components/Challenges";
-import { Solutions } from "../components/Solutions";
-import { Analysis } from "../components/Analysis";
-import { Platform } from "../components/Platform";
-import { UseCases } from "../components/UseCases";
-import { Method } from "../components/Method";
-import { Quality } from "../components/Quality";
-import { AboutUs } from "../components/AboutUs";
-import { Footer } from "../components/Footer";
-import { Contact } from "../components/Contact";
+import { LandingPage } from "../components/LandingPage";
 
 export const meta: MetaFunction = () => {
   return [
@@ -57,22 +46,5 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 }
 
 export default function Index() {
-  return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-      <main className="flex-1">
-        <Hero />
-        <Challenges />
-        <Solutions />
-        <Analysis />
-        <Platform />
-        <UseCases />
-        <Method />
-        <Quality />
-        <AboutUs />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
-  );
+  return <LandingPage />;
 }
