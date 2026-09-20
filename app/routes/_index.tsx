@@ -6,6 +6,11 @@ import { Hero } from "../components/Hero";
 import { Challenges } from "../components/Challenges";
 import { Solutions } from "../components/Solutions";
 import { Analysis } from "../components/Analysis";
+import { Platform } from "../components/Platform";
+import { UseCases } from "../components/UseCases";
+import { Method } from "../components/Method";
+import { Quality } from "../components/Quality";
+import { AboutUs } from "../components/AboutUs";
 import { Footer } from "../components/Footer";
 import { Contact } from "../components/Contact";
 
@@ -60,6 +65,11 @@ export default function Index() {
         <Challenges />
         <Solutions />
         <Analysis />
+        <Platform />
+        <UseCases />
+        <Method />
+        <Quality />
+        <AboutUs />
         <Contact />
       </main>
       <Footer />

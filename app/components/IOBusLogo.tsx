@@ -1,3 +1,27 @@
+interface IsologoProps {
+  /** Tailwind height class, e.g. `h-[34px]`. */
+  heightClass: string;
+  alt?: string;
+}
+
+/** The isologo mark; the dark variant is tinted to the light ink color. */
+export function Isologo({ heightClass, alt = "" }: IsologoProps) {
+  return (
+    <>
+      <img
+        src="/logos/ISOLOGO-18.svg"
+        alt={alt}
+        className={`${heightClass} w-auto dark:hidden`}
+      />
+      <img
+        src="/logos/ISOLOGO-20.svg"
+        alt={alt}
+        className={`${heightClass} hidden w-auto [filter:brightness(0)_invert(0.937)] dark:block`}
+      />
+    </>
+  );
+}
+
 interface IOBusLogoProps {
   /** `header` is the 34px mark with a 26px wordmark; `footer` is 30px / 24px. */
   size?: "header" | "footer";
@@ -13,16 +37,7 @@ export function IOBusLogo({ size = "header" }: IOBusLogoProps) {
 
   return (
     <span className="inline-flex items-center gap-0.5">
-      <img
-        src="/logos/ISOLOGO-18.svg"
-        alt="iobus"
-        className={`${icon} w-auto dark:hidden`}
-      />
-      <img
-        src="/logos/ISOLOGO-20.svg"
-        alt="iobus"
-        className={`${icon} hidden w-auto [filter:brightness(0)_invert(0.937)] dark:block`}
-      />
+      <Isologo heightClass={icon} alt="iobus" />
       <span
         className={`${text} mt-1 font-qurova lowercase leading-none`}
         aria-hidden="true"

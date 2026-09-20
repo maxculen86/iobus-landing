@@ -1,15 +1,17 @@
 import type { ReactNode } from "react";
 
-type CardTone = "surface" | "surface2";
-type CardElevation = "none" | "soft" | "card";
+type CardTone = "surface" | "surface2" | "blueSoft";
+type CardElevation = "none" | "step" | "soft" | "card";
 
 const TONE_CLASSES: Record<CardTone, string> = {
-  surface: "bg-io-surface",
-  surface2: "bg-io-surface2",
+  surface: "border-io-border bg-io-surface",
+  surface2: "border-io-border bg-io-surface2",
+  blueSoft: "border-io-blue-soft-border bg-io-blue-soft",
 };
 
 const ELEVATION_CLASSES: Record<CardElevation, string> = {
   none: "",
+  step: "shadow-io-step",
   soft: "shadow-io-card-soft",
   card: "shadow-io-card",
 };
@@ -30,7 +32,7 @@ export function Card({
 }: CardProps) {
   return (
     <div
-      className={`rounded-lg border border-io-border ${TONE_CLASSES[tone]} ${ELEVATION_CLASSES[elevation]} ${className}`}
+      className={`rounded-lg border ${TONE_CLASSES[tone]} ${ELEVATION_CLASSES[elevation]} ${className}`}
     >
       {children}
     </div>
